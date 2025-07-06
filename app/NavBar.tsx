@@ -3,18 +3,16 @@
 import { Skeleton } from "@/app/components";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillBug } from "react-icons/ai";
 import classnames from "classnames";
 import { useSession } from "next-auth/react";
 import {
   Avatar,
   Box,
-  Button,
   Container,
   DropdownMenu,
   Flex,
-  IconButton,
   Text,
 } from "@radix-ui/themes";
 
@@ -35,32 +33,36 @@ const NavBar = () => {
           <AuthStatus />
         </Flex>
       </Container>
+
+      {/* Custom animations and styling */}
       <style jsx global>{`
         @keyframes bounce-slow {
-          0%,
-          100% {
+          0%, 100% {
             transform: translateY(0);
           }
           50% {
             transform: translateY(-12px);
           }
         }
+
         .animate-bounce-slow {
           animation: bounce-slow 2.5s infinite;
         }
+
         @keyframes gradient-text {
-          0%,
-          100% {
+          0%, 100% {
             background-position: 0% 50%;
           }
           50% {
             background-position: 100% 50%;
           }
         }
+
         .animate-gradient-text {
           background-size: 200% 200%;
           animation: gradient-text 4s ease-in-out infinite;
         }
+
         .drop-shadow-glow {
           filter: drop-shadow(0 0 16px #f472b6) drop-shadow(0 0 8px #f472b6);
         }
@@ -71,6 +73,15 @@ const NavBar = () => {
 
 const NavLinks = () => {
   const currentPath = usePathname();
+  const [isLightMode, setIsLightMode] = useState(false);
+
+  useEffect(() => {
+    // Run only on client
+    if (typeof window !== "undefined") {
+      const isLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      setIsLightMode(isLight);
+    }
+  }, []);
 
   const links = [
     { label: "Home", href: "/" },
@@ -81,23 +92,23 @@ const NavLinks = () => {
 
   return (
     <ul className="flex space-x-6">
-      {links.map((link) => (
-        <li key={link.href}>
-          <Link
-            className={classnames({
-              "nav-link": true,
-              active: link.href === currentPath,
-              "!text-zinc-900":
-                link.href === currentPath &&
-                typeof window !== "undefined" &&
-                window.matchMedia("(prefers-color-scheme: light)").matches,
-            })}
-            href={link.href}
-          >
-            {link.label}
-          </Link>
-        </li>
-      ))}
+      {links.map((link) => {
+        const isActive = link.href === currentPath;
+
+        return (
+          <li key={link.href}>
+            <Link
+              className={classnames("nav-link", {
+                active: isActive,
+                "!text-zinc-900": isActive && isLightMode,
+              })}
+              href={link.href}
+            >
+              {link.label}
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 };

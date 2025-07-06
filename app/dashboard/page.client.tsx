@@ -3,7 +3,6 @@ import AuthGuard from "@/app/auth/AuthGuard";
 import IssueSummary from "../IssueSummary";
 import LatestIssues from "../LatestIssues";
 import IssueChart from "../IssueChart";
-import { Flex, Grid } from "@radix-ui/themes";
 
 export default function DashboardPageClient({ open, inProgress, closed, latestIssues }: { open: number; inProgress: number; closed: number; latestIssues: any[] }) {
   return (
