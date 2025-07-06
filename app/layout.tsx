@@ -40,3 +40,15 @@ export default function RootLayout({
     </html>
   );
 }
+
+// This file is used to set up the global layout for the application, including the theme and authentication context.
+// It imports necessary styles, sets up metadata, and defines the main structure of the application layout.
+// The `RootLayout` component wraps the application in a theme provider and an authentication provider, ensuring that the theme and authentication state are available throughout the app.
+
+// The `QueryClientProvider` is used to manage server state with React Query, allowing for efficient data fetching and caching. 
+
+// The `NavBar` component is included to provide navigation links, and the main content of the application is rendered within a styled main element.
+// Authentication is handled through the `AuthProvider`, which provides user authentication context to the application.
+// The `Theme` component from Radix UI is used to apply a consistent theme across the application, with a specified accent color.
+// The `Inter` font from Google Fonts is applied globally to ensure a consistent typography style across the application.
+// {children} represents the dynamic content of the application, allowing for different pages or components to be rendered within the layout.
