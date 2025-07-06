@@ -7,6 +7,15 @@ import { useEffect } from "react";
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const { status } = useSession();
 
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+  }, [status]);
+
   if (status === "loading") {
     return (
       <div className="flex items-center justify-center min-h-screen w-full bg-gradient-to-br from-white via-sky-100 to-blue-100 dark:from-zinc-900 dark:via-indigo-900 dark:to-violet-700">
@@ -16,13 +25,6 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
   }
 
   if (status === "unauthenticated") {
-    useEffect(() => {
-      // Prevent background scroll when sign-in popup is open
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = "";
-      };
-    }, []);
     return (
       <div className="fixed inset-0 flex items-center justify-center min-h-screen w-full bg-gradient-to-br from-white via-sky-100 to-blue-100 dark:from-zinc-900 dark:via-indigo-900 dark:to-violet-700 overflow-hidden">
         <div className="relative flex flex-col items-center justify-center bg-white/80 dark:bg-zinc-900/80 rounded-3xl shadow-2xl p-8 max-w-2xl w-full border border-blue-200 dark:border-violet-700 backdrop-blur-md overflow-hidden mt-[5px]">

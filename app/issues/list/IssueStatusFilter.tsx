@@ -29,6 +29,7 @@ const IssueStatusFilter = () => {
         router.push('/issues/list' + query);
       }}
     >
+      
       <Select.Trigger key="issue-status-filter-trigger" placeholder="Filter by status..." />
       <Select.Content key="issue-status-filter-content">
         {statuses.map((status) => (
