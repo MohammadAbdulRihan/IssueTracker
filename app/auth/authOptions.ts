@@ -15,7 +15,7 @@ const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   pages: {
-    signIn: '/api/auth/signin',
+    signIn: '/auth/signin', // <-- FIXED: should be a page, not an API route
   },
   callbacks: {
     async session({ session, user, token }) {
