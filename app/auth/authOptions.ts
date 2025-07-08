@@ -6,7 +6,7 @@ import { NextAuthOptions } from 'next-auth';
 const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    GoogleProvider({
+    GoogleProvider({ 
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
@@ -15,7 +15,7 @@ const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   pages: {
-    signIn: '/auth/signin', // <-- FIXED: should be a page, not an API route
+    signIn: '/auth/signin',  // <-- FIXED: should be a page, not an API route
   },
   callbacks: {
     async session({ session, user, token }) {

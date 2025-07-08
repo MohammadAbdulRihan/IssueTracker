@@ -58,3 +58,8 @@ const useUsers = () =>
   });
 
 export default AssigneeSelect;
+
+
+// This component fetches the list of users and allows assigning an issue to a user.
+// It uses Radix UI's Select component for a dropdown interface.  
+
