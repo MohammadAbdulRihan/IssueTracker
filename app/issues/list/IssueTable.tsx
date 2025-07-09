@@ -18,7 +18,8 @@ interface Props {
 }
 
 const IssueTable = ({ searchParams, issues }: Props) => {
-
+  // console.log(issues);
+  
   return (
     <Table.Root variant="surface">
         <Table.Header>

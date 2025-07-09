@@ -33,7 +33,7 @@ export default function SignInPage() {
         <div className="absolute top-1/2 left-1/2 w-40 h-40 bg-sky-200 dark:bg-blue-900 rounded-full blur-3xl opacity-30 animate-pulse -translate-x-1/2 -translate-y-1/2" />
         {/* Main content */}
         <h1 className="text-3xl font-extrabold text-sky-700 dark:text-blue-200 mb-4 drop-shadow-lg tracking-wide z-10">
-          <span className="inline-block align-middle mr-2 animate-bounce">🔑</span>
+          {/* <span className="inline-block align-middle mr-2 animate-bounce">🔑</span> */}
           Welcome! Sign in to continue
         </h1>
         <p className="text-base text-zinc-700 dark:text-zinc-200 mb-8 text-center max-w-xl font-medium z-10">
@@ -60,13 +60,13 @@ export default function SignInPage() {
                 </button>
               ))}
         </div>
-        <div className="flex items-center w-full my-4 z-10">
+        {/* <div className="flex items-center w-full my-4 z-10">
           <div className="flex-grow border-t border-blue-200 dark:border-violet-700"></div>
           <span className="mx-4 text-lg text-blue-500 dark:text-blue-300 font-bold">or</span>
           <div className="flex-grow border-t border-blue-200 dark:border-violet-700"></div>
-        </div>
+        </div> */}
         {/* Email/Password form */}
-        <form onSubmit={handleCredentialsSignIn} className="flex flex-col gap-4 w-full z-10 mt-6">
+        {/* <form onSubmit={handleCredentialsSignIn} className="flex flex-col gap-4 w-full z-10 mt-6">
           <label className="text-left text-blue-700 dark:text-blue-200 font-semibold">Email</label>
           <input
             type="email"
@@ -93,7 +93,7 @@ export default function SignInPage() {
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 8.25V6.75A2.25 2.25 0 0014.25 4.5h-4.5A2.25 2.25 0 007.5 6.75v10.5A2.25 2.25 0 009.75 19.5h4.5a2.25 2.25 0 002.25-2.25v-1.5" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12l3-3m0 0l-3-3m3 3H9" /></svg>
             Sign in with Email
           </button>
-        </form>
+        </form> */}
       </div>
     </div>
   );

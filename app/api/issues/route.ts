@@ -16,6 +16,7 @@ export async function POST(request: NextRequest) {
 
   // Set userId to current user's id
   const user = session.user as typeof session.user & { id: string };
+  console.log(user);
   const newIssue = await prisma.issue.create({
     data: { title: body.title, description: body.description, userId: user.id },
   });
@@ -24,6 +25,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+
   const session = await getServerSession(authOptions);
   if (!session || !session.user || !('id' in session.user))
     return NextResponse.json([], { status: 401 });
@@ -33,6 +35,7 @@ export async function GET(request: NextRequest) {
   const issues = await prisma.issue.findMany({
     where: { userId: user.id },
   });
+
 
   return NextResponse.json(issues);
 }

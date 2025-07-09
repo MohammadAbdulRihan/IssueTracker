@@ -6,6 +6,8 @@ import IssueTable, { IssueQuery, columnNames } from './IssueTable';
 import { Flex } from '@radix-ui/themes';
 import { Metadata } from 'next';
 import IssuesPageClient from './page.client';
+import { getServerSession } from 'next-auth';
+import authOptions from '@/app/auth/authOptions';
 
 interface Props {
   searchParams: IssueQuery
@@ -25,10 +27,11 @@ const IssuesPage = async ({ searchParams }: Props) => {
 
   const page = parseInt(searchParams.page) || 1;
   const pageSize = 10;
-
+  const session = await getServerSession(authOptions);
+  //@ts-ignore
+const user = session?.user as typeof session.user & { id: string };
   const issues = await prisma.issue.findMany({
-    
-    where,
+    where: { userId: user.id },
     orderBy,
     skip: (page - 1) * pageSize,
     take: pageSize,
